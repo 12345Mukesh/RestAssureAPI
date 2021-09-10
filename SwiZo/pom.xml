@@ -27,7 +27,7 @@
 				<configuration>
 					<suiteXmlFiles>
 						<!-- TestNG suite XML files -->
-						<suiteXmlFile>CreateSalesOrder.xml</suiteXmlFile>
+						<suiteXmlFile>potential.xml</suiteXmlFile>
 					</suiteXmlFiles>
 				</configuration>
 			</plugin>
