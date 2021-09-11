@@ -27,7 +27,7 @@
 				<configuration>
 					<suiteXmlFiles>
 						<!-- TestNG suite XML files -->
-						<suiteXmlFile>potential.xml</suiteXmlFile>
+						<suiteXmlFile>campaign.xml</suiteXmlFile>
 					</suiteXmlFiles>
 				</configuration>
 			</plugin>
