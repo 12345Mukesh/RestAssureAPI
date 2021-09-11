@@ -27,7 +27,7 @@
 				<configuration>
 					<suiteXmlFiles>
 						<!-- TestNG suite XML files -->
-						<suiteXmlFile>campaign.xml</suiteXmlFile>
+						<suiteXmlFile>First6.xml</suiteXmlFile>
 					</suiteXmlFiles>
 				</configuration>
 			</plugin>
