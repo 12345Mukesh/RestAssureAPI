@@ -42,7 +42,7 @@ public class PTTest extends BaseTest
 		p1.Details(flib.ReadExcelData(EXCEL_PATH, "Account", 3, 0));
 		p1.Details1("Qualification", "New Business", "Cold Call");
 		
-		
+		bt.closeBrowser();	
 		
 		
 		
