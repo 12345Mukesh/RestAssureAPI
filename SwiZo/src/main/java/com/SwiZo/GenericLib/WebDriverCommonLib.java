@@ -14,6 +14,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.Reporter;
 
 import com.google.common.io.Files;
 
@@ -122,6 +124,27 @@ public class WebDriverCommonLib
 			
 	}
 	
+	
+	
+	public void getFullPageScreenshot(String screenshotpath)
+	{
+		TakesScreenshot ts=(TakesScreenshot)BaseTest.driver;
+		File src=ts.getScreenshotAs(OutputType.FILE);
+		File dest=new File(screenshotpath);
+		
+		try 
+		{
+			Files.copy(src, dest);
+		}
+		catch (IOException e)
+		{
+			
+			e.printStackTrace();
+		}	
+			
+	}
+			
+	
 	public void getWindowHandleclick(String targetbrowsertitle, WebElement element)
 	{
 	  String mainwindow = BaseTest.driver.getWindowHandle();	
@@ -170,8 +193,20 @@ public class WebDriverCommonLib
 		wait.until(ExpectedConditions.titleContains(Title));
 	}
 	
+	public void verifySuccessMsg(WebElement element, String eleName)
+	{
+		if(element.isDisplayed())
+		{
+			Assert.assertTrue(true);
+		}
+		else
+		{
+			Reporter.log(eleName+"is not Displayed,FAIL", true);
+			Assert.assertTrue(false);
+		}
 	
-
+	
+	}
 
 
 	

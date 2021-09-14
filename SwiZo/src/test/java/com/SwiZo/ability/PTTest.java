@@ -34,10 +34,11 @@ public class PTTest extends BaseTest
 		
 		Customviewpage cv= new Customviewpage();
 		cv.NewPotential();
-		  Thread.sleep(2000);
-		wlib.verify(wlib.getPageTitle(), "createpotentialTitle", "Create Potential");
+		  
+		wlib.verify(wlib.getPageTitle(), flib.readPropertyData(PROP_PATH, "createpotentialTitle"), "Create Potential");
 	 
 		PTHandle p1= new PTHandle();
+		
 		p1.Details(flib.ReadExcelData(EXCEL_PATH, "Account", 3, 0));
 		p1.Details1("Qualification", "New Business", "Cold Call");
 		
