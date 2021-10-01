@@ -6,7 +6,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 
 public class BaseTest implements IACo 
 {
@@ -14,7 +16,7 @@ public class BaseTest implements IACo
 	
 	public static WebDriver driver;
 	
-	@BeforeClass 
+	@BeforeMethod
 	
 	public void openBrowser() throws Throwable
 	{
@@ -44,12 +46,10 @@ public class BaseTest implements IACo
 //		String appurl1= flib.ReadExcelData(EXCEL_PATH, "Account", 4, 2);
 //		driver.get(appurl1);
 		
-		WebDriverCommonLib wlib= new WebDriverCommonLib();
-		String explt= flib.readPropertyData(PROP_PATH, "logintitle");
-		wlib.verify(wlib.getPageTitle(),explt,"Loginpage");
+		
 	}
 
-   @AfterClass
+   @AfterMethod
     public void closeBrowser()
     {
     	driver.quit();

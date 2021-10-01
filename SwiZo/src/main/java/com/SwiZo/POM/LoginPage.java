@@ -61,6 +61,13 @@ public void loginToApp(String un, String pwd)
 	
 }
 
+public WebElement getChkbox() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+
+
 	
 
 	

@@ -1,5 +1,6 @@
 package com.SwiZo.specimen;
 
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.SwiZo.GenericLib.BaseTest;
@@ -9,14 +10,15 @@ import com.SwiZo.POM.Customviewpage;
 import com.SwiZo.POM.HomePage;
 import com.SwiZo.POM.LoginPage;
 
+@Listeners(com.SwiZo.GenericLib.ReportListeners.class)
+
 public class CreateCasePage1 extends BaseTest
 {
 
 	 @Test
-		public  void main() throws Throwable 
+		public  void Case() throws Throwable 
 			  {
-				  BaseTest bt =new BaseTest();
-					bt.openBrowser();
+				  
 					
 					Filelib flib= new Filelib();
 					WebDriverCommonLib wlib= new WebDriverCommonLib();
@@ -34,7 +36,7 @@ public class CreateCasePage1 extends BaseTest
 					wlib.verify(wlib.getPageTitle(), flib.readPropertyData(PROP_PATH, "customViewTitle"), "Displaying Custom View Details");
 					
 					Customviewpage cv= new Customviewpage();
-					//cv.
+					
 					cv.edit();
 					
 					wlib.verify(wlib.getPageTitle(), flib.readPropertyData(PROP_PATH, "customTitle"),"Edit Custom View" );

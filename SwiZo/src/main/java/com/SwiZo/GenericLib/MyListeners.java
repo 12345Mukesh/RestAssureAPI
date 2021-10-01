@@ -30,7 +30,7 @@ public class MyListeners implements ITestListener
 	{
 		Reporter.log(result.getName()+"method failed",true);
 		WebDriverCommonLib wlib=  new  WebDriverCommonLib();
-		wlib.getFullPageScreenshot("./screenshots/" +result.getName()+ ".png");
+		wlib.getFullPageScreenshot("C:\\Users\\L e n o v o\\git\\repository\\SwiZo\\screenshots\\" +result.getName()+ ".png");
 	}
 	
 	@Override

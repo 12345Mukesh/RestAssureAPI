@@ -7,8 +7,8 @@
       <class name="com.SwiZo.communique.CreateAccountTest"/>
       <class name="com.SwiZo.crusade.CampaignTest"/>
       <class name="com.SwiZo.ability.PotentialPageTest"/>
-      <class name="com.SwiZo.escort.CreateLeadTest"/>
       <class name="com.SwiZo.specimen.CreateCasePage1"/>
+      <class name="com.SwiZo.escort.CreateLeadTest"/>
       <class name="com.SwiZo.proximity.EditContactTest"/>
       <class name="com.SwiZo.ability.PTTest"/>
       <class name="com.SwiZo.importunity.PurchaseTest"/>

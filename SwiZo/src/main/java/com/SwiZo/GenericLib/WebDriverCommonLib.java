@@ -17,6 +17,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.Reporter;
 
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.markuputils.ExtentColor;
+import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.google.common.io.Files;
 
 public class WebDriverCommonLib
@@ -31,13 +34,25 @@ public class WebDriverCommonLib
 
 	public void verify(String actual, String expected, String page)
 	{
+//		if(actual.equals(expected))
+//		{
+//			System.out.println(page + " is Displayed : Pass");
+//		}
+//		else
+//		{
+//			System.out.println(page + " is not Displayed: Fail ");
+//		}
 		if(actual.equals(expected))
 		{
-			System.out.println(page + " is Displayed : Pass");
+		Assert.assertTrue(true);
+		ExtentTest test = ReportListeners.extent.createTest("verify");
+		test.pass(MarkupHelper.createLabel(" is Displayed, PASS", ExtentColor.GREEN));
 		}
 		else
 		{
-			System.out.println(page + " is not Displayed: Fail ");
+			Assert.assertTrue(false);
+			ReportListeners.test=ReportListeners.extent.createTest("verify");
+			ReportListeners.test.pass(MarkupHelper.createLabel(" is not  Displayed, FAIL", ExtentColor.RED));
 		}
 		
 	}
@@ -106,10 +121,10 @@ public class WebDriverCommonLib
 		al.accept();
 	}
 	
-	public void getElementPageScreenshot(String screenshotpath)
+	public void getElementPageScreenshot(WebElement element,String screenshotpath)
 	{
-		TakesScreenshot ts=(TakesScreenshot)BaseTest.driver;
-		File src=ts.getScreenshotAs(OutputType.FILE);
+		
+		File src=element.getScreenshotAs(OutputType.FILE);
 		File dest=new File(screenshotpath);
 		
 		try 
@@ -126,24 +141,64 @@ public class WebDriverCommonLib
 	
 	
 	
-	public void getFullPageScreenshot(String screenshotpath)
+	public String getFullPageScreenshot(String screenshotName)
 	{
 		TakesScreenshot ts=(TakesScreenshot)BaseTest.driver;
 		File src=ts.getScreenshotAs(OutputType.FILE);
-		File dest=new File(screenshotpath);
+		
+		String dest="C:\\Users\\L e n o v o\\git\\repository\\SwiZo\\screenshots\\"+screenshotName+".png";
+		File destination=new File(dest);
 		
 		try 
 		{
-			Files.copy(src, dest);
+			Files.copy(src, destination);
 		}
 		catch (IOException e)
 		{
 			
 			e.printStackTrace();
-		}	
+		}
+		return dest;	
 			
 	}
 			
+	
+	
+	public void elementStatus(WebElement element, int checkType, String elementName)
+	{
+		switch(checkType)
+		{
+		case 1:
+			try {
+				element.isDisplayed();
+				ReportListeners.test.info(MarkupHelper.createLabel(elementName+" is Displayed", ExtentColor.PURPLE));
+			}
+			catch (Exception e) {
+				ReportListeners.test.info(MarkupHelper.createLabel(elementName+" is not Displayed", ExtentColor.ORANGE));
+			}
+			
+			break;
+		case 2:
+			try {
+				element.isEnabled();
+				ReportListeners.test.info(MarkupHelper.createLabel(elementName+" is Enabled", ExtentColor.PURPLE));
+			}
+			catch (Exception e) {
+				ReportListeners.test.info(MarkupHelper.createLabel(elementName+" is not Enabled", ExtentColor.ORANGE));
+			}
+			break;
+		case 3: 
+			try {
+				element.isSelected();
+				ReportListeners.test.info(MarkupHelper.createLabel(elementName+" is Selected", ExtentColor.PURPLE));
+			}
+			catch (Exception e) {
+				ReportListeners.test.info(MarkupHelper.createLabel(elementName+" is not Selected", ExtentColor.ORANGE));
+			}
+			break;
+		}
+	}
+
 	
 	public void getWindowHandleclick(String targetbrowsertitle, WebElement element)
 	{
@@ -207,6 +262,7 @@ public class WebDriverCommonLib
 	
 	
 	}
+
 
 
 	

@@ -25,7 +25,7 @@ public class Customviewpage
 		//click on Edit in Case page
 		@FindBy(xpath="(//a[text()=\"Edit\"][1])") private WebElement ed;
 		
-		//clicking on the drop down
+		//clicking on the drop down of invoices
 		@FindBy(xpath="//select[@name=\"cvid\"]")  private WebElement drop;
 	    
 		//clicking on Search button in potential
@@ -51,13 +51,36 @@ public class Customviewpage
 		//clicking on new potential
 		@FindBy(xpath="//input[@value='New Potential']") private WebElement pt;
 		
+		//Delete leads
+		@FindBy(xpath="//input[@value='New Lead']") private WebElement lead;
+		
+		@FindBy(xpath="(//input[@name='chk'])[1]") private WebElement checkbox;
+		
+		@FindBy(xpath="(//a[text()='Del'])[1]") private WebElement delete;
+		
+		
 		public Customviewpage()
 		{
 			PageFactory.initElements(BaseTest.driver, this);
 			
 		}
 		
+		//Delete lead page
+		public void  newlead()
+		{
+			lead.click();
+		}
 
+		public void clickcheckbox()
+		{
+			checkbox.click();
+		}
+		
+		
+		public void deletebutton()
+		{
+			delete.click();
+		}
 		public void clickNewLeadBtn()
 		{
 			newleadsbtn.click();

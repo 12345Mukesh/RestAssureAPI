@@ -2,6 +2,7 @@ package com.SwiZo.relay;
 
 import java.util.concurrent.TimeUnit;
 
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.SwiZo.GenericLib.BaseTest;
@@ -11,13 +12,13 @@ import com.SwiZo.POM.Customviewpage;
 import com.SwiZo.POM.HomePage;
 import com.SwiZo.POM.LoginPage;
 
+@Listeners(com.SwiZo.GenericLib.ReportListeners.class)
+
 public class Reports1 extends BaseTest
 {
     @Test
-	public  void main(String[] args) throws Throwable 
+	public  void  Reports() throws Throwable 
 	{
-		BaseTest bt =new BaseTest();
-		bt.openBrowser();
 		
 		Filelib flib= new Filelib();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -42,8 +43,7 @@ wlib.verify(wlib.getPageTitle(), flib.readPropertyData(PROP_PATH, "customViewTit
 		r1.Continue();
 		
 		
-		driver.close();
-
+		
 	}
 	
 	

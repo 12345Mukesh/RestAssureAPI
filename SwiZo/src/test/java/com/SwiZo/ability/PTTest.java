@@ -1,6 +1,8 @@
 package com.SwiZo.ability;
 
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+
 
 import com.SwiZo.GenericLib.BaseTest;
 import com.SwiZo.GenericLib.Filelib;
@@ -9,13 +11,14 @@ import com.SwiZo.POM.Customviewpage;
 import com.SwiZo.POM.HomePage;
 import com.SwiZo.POM.LoginPage;
 
+@Listeners(com.SwiZo.GenericLib.ReportListeners.class)
+
 public class PTTest extends BaseTest
 {
 	@Test
-	public  void main() throws Throwable 
+	public  void PT() throws Throwable 
 	{
-		BaseTest bt =new BaseTest();
-		bt.openBrowser();
+		
 		
 		Filelib flib= new Filelib();
 		WebDriverCommonLib wlib= new WebDriverCommonLib();
@@ -42,7 +45,7 @@ public class PTTest extends BaseTest
 		p1.Details(flib.ReadExcelData(EXCEL_PATH, "Account", 3, 0));
 		p1.Details1("Qualification", "New Business", "Cold Call");
 		
-		bt.closeBrowser();	
+	
 		
 		
 		

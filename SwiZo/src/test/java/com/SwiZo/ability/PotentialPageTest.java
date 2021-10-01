@@ -1,5 +1,6 @@
 package com.SwiZo.ability;
 
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.SwiZo.GenericLib.BaseTest;
@@ -9,14 +10,13 @@ import com.SwiZo.POM.Customviewpage;
 import com.SwiZo.POM.HomePage;
 import com.SwiZo.POM.LoginPage;
 
+@Listeners(com.SwiZo.GenericLib.ReportListeners.class)
 public class PotentialPageTest extends BaseTest
 {
 
 	@Test
-	public  void main() throws Throwable 
+	public  void potential() throws Throwable 
 	{
-		BaseTest bt =new BaseTest();
-		bt.openBrowser();
 		
 		Filelib flib= new Filelib();
 		WebDriverCommonLib wlib= new WebDriverCommonLib();

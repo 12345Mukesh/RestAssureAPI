@@ -1,6 +1,8 @@
 package com.SwiZo.IndicatorPanel;
 
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+
 
 import com.SwiZo.GenericLib.BaseTest;
 import com.SwiZo.GenericLib.Filelib;
@@ -9,16 +11,17 @@ import com.SwiZo.POM.Customviewpage;
 import com.SwiZo.POM.HomePage;
 import com.SwiZo.POM.LoginPage;
 
+@Listeners(com.SwiZo.GenericLib.ReportListeners.class)
+
 public class DashboardsTest extends BaseTest
 {
-	private static final String PROP_PATH = null;
+	
 
 	@Test
-	public  void main() throws Throwable 
+	public  void verifydashboard() throws Throwable 
 	{
 		
-		BaseTest bt= new BaseTest();
-		bt.openBrowser();
+		
 		Filelib flib= new Filelib();
 		WebDriverCommonLib wlib= new WebDriverCommonLib();
 		LoginPage lp= new LoginPage();
@@ -45,7 +48,7 @@ wlib.verify(wlib.getPageTitle(), flib.readPropertyData(PROP_PATH, "showingDashbo
 		i2.Nextbtn();
 		
 		wlib.verify(wlib.getPageTitle(), flib.readPropertyData(PROP_PATH, "selectDashboardTitle"), "Select Dashboard Component:Step 1");
-		driver.close();
+		
 
 	}
 

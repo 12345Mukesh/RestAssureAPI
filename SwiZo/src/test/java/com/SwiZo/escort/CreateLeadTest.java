@@ -1,6 +1,8 @@
 package com.SwiZo.escort;
 
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+
 
 import com.SwiZo.GenericLib.BaseTest;
 import com.SwiZo.GenericLib.Filelib;
@@ -9,6 +11,7 @@ import com.SwiZo.POM.Customviewpage;
 import com.SwiZo.POM.HomePage;
 import com.SwiZo.POM.LoginPage;
 
+@Listeners(com.SwiZo.GenericLib.ReportListeners.class)
 public class CreateLeadTest extends BaseTest
 {
 
@@ -16,8 +19,6 @@ public class CreateLeadTest extends BaseTest
 	public void main() throws Throwable
 	{
 		
-		BaseTest bt =new BaseTest();
-		bt.openBrowser();
 		
 		Filelib flib= new Filelib();
 		

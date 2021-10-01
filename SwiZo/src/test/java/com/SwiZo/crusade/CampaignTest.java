@@ -2,6 +2,7 @@ package com.SwiZo.crusade;
 
 import java.util.concurrent.TimeUnit;
 
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.SwiZo.GenericLib.BaseTest;
@@ -11,14 +12,15 @@ import com.SwiZo.POM.Customviewpage;
 import com.SwiZo.POM.HomePage;
 import com.SwiZo.POM.LoginPage;
 
+@Listeners(com.SwiZo.GenericLib.ReportListeners.class)
+
 public class CampaignTest extends BaseTest
 {
 	@Test
-	public void run() throws Throwable 
+	public void Campaign() throws Throwable 
 	{
 	   
-		BaseTest bt =new BaseTest();
-		bt.openBrowser();
+		
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
 		Filelib flib= new Filelib();
 		WebDriverCommonLib wlib= new WebDriverCommonLib();

@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.SwiZo.relay.Reports1">
+      <class name="com.SwiZo.reckoring.InvoicePage">
         <methods>
+          <include name="invoice"/>
           <include name="closeBrowser"/>
           <include name="openBrowser"/>
-          <include name="main"/>
         </methods>
-      </class> <!-- com.SwiZo.relay.Reports1 -->
+      </class> <!-- com.SwiZo.reckoring.InvoicePage -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

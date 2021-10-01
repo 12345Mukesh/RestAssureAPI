@@ -2,6 +2,7 @@ package com.SwiZo.communique;
 
 import java.util.concurrent.TimeUnit;
 
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.SwiZo.GenericLib.BaseTest;
@@ -11,15 +12,15 @@ import com.SwiZo.POM.Customviewpage;
 import com.SwiZo.POM.HomePage;
 import com.SwiZo.POM.LoginPage;
 
+
+@Listeners(com.SwiZo.GenericLib.ReportListeners.class)
 public class CreateAccountTest extends BaseTest
 {
   
 	 @Test
-		public  void main() throws Throwable 
+		public  void Account() throws Throwable 
 		{
 		
-			BaseTest bt =new BaseTest();
-			bt.openBrowser();
 			
 			Filelib flib= new Filelib();
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);

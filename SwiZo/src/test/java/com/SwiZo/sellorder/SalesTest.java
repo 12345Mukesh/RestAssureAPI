@@ -1,5 +1,9 @@
 package com.SwiZo.sellorder;
 
+import org.testng.annotations.Listeners;
+import org.testng.annotations.Test;
+
+
 import com.SwiZo.GenericLib.BaseTest;
 import com.SwiZo.GenericLib.Filelib;
 import com.SwiZo.GenericLib.WebDriverCommonLib;
@@ -7,12 +11,14 @@ import com.SwiZo.POM.Customviewpage;
 import com.SwiZo.POM.HomePage;
 import com.SwiZo.POM.LoginPage;
 
+@Listeners(com.SwiZo.GenericLib.ReportListeners.class)
+
 public class SalesTest extends BaseTest
 {
-    public void main() throws Throwable
+	@Test
+    public void sales() throws Throwable
     {
-	BaseTest bt= new BaseTest();
-	bt.openBrowser();
+	
 	Filelib flib= new Filelib();
 	WebDriverCommonLib wlib= new WebDriverCommonLib();
 	LoginPage lp= new LoginPage();
@@ -25,7 +31,7 @@ public class SalesTest extends BaseTest
 	wlib.verify(wlib.getPageTitle(), flib.readPropertyData(PROP_PATH, "customViewTitle"), "Displaying Custom View Details");
 	
 	Customviewpage cv= new Customviewpage();
-	cv.salesorder();
+	//cv.salesorder();
 	wlib.verify(wlib.getPageTitle(), flib.readPropertyData(PROP_PATH, "ReportTitle"), "Reports");
 	
 	SalesOrder s= new SalesOrder();
@@ -42,8 +48,7 @@ public class SalesTest extends BaseTest
     
     s1.filter("Zoho CRM - Save Report",s1.getreport() , flib.ReadExcelData(EXCEL_PATH, "Account", 8, 1), flib.ReadExcelData(EXCEL_PATH, "Account", 8, 2));
     
-    driver.quit();
-
+    
 
 
 
