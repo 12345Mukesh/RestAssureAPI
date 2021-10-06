@@ -3,13 +3,13 @@
 <suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Test(failed)">
     <classes>
-      <class name="com.SwiZo.escort.DeleteLead">
+      <class name="com.SwiZo.ability.PotentialPageTest">
         <methods>
           <include name="closeBrowser"/>
           <include name="openBrowser"/>
-          <include name="deleteleads"/>
+          <include name="potential"/>
         </methods>
-      </class> <!-- com.SwiZo.escort.DeleteLead -->
+      </class> <!-- com.SwiZo.ability.PotentialPageTest -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

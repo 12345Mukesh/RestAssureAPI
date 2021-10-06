@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.SwiZo.reckoring.InvoicePage">
+      <class name="com.SwiZo.ability.PotentialPageTest">
         <methods>
-          <include name="invoice"/>
           <include name="closeBrowser"/>
           <include name="openBrowser"/>
+          <include name="potential"/>
         </methods>
-      </class> <!-- com.SwiZo.reckoring.InvoicePage -->
+      </class> <!-- com.SwiZo.ability.PotentialPageTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

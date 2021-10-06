@@ -48,7 +48,7 @@ public class ReportListeners implements ITestListener
 
 		public void onStart(ITestContext context) 
 		{
-			ExtentSparkReporter spark = new ExtentSparkReporter("C:\\Users\\L e n o v o\\git\\repository\\SwiZo\\Reports\\First6.html");
+			ExtentSparkReporter spark = new ExtentSparkReporter("C:\\Users\\L e n o v o\\git\\repository\\SwiZo\\Reports\\potential.html");
 			//Customising report view
 			spark.config().setDocumentTitle("SwiZo Reports");
 			spark.config().setReportName("Extent Reports 5");
