@@ -74,8 +74,8 @@ public class CreateContactTc_001 {
 		Thread.sleep(4000);
 
 		driver.findElement(By.xpath("//a[text()='Contacts']")).click();
-
-		driver.findElement(By.xpath("//input[@class='txtBox']")).sendKeys(prop.getProperty("name"));
+		String abc4 = wb.getSheet("Sheet1").getRow(1).getCell(1).toString();
+		driver.findElement(By.xpath("//input[@class='txtBox']")).sendKeys(abc4);
 		String abc3 = wb.getSheet("Sheet1").getRow(0).getCell(6).toString();
 		WebElement Indropdown = driver.findElement(By.id("bas_searchfield"));
 		Select Indd = new Select(Indropdown);
@@ -84,7 +84,7 @@ public class CreateContactTc_001 {
 		driver.findElement(By.xpath("//input[@name='submit']")).click();
 
 		WebElement contactname = driver
-				.findElement(By.xpath("//a[@title='Contacts' and text()='" + prop.getProperty("name") + "']"));
+				.findElement(By.xpath("//a[@title='Contacts' and text()='" + abc4+ "']"));
 
 		if (contactname.isDisplayed()) {
 			Assert.assertTrue(true);
