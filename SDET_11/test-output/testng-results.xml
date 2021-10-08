@@ -2,16 +2,16 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2021-10-08T15:24:21 IST" name="Default suite" finished-at="2021-10-08T15:24:59 IST" duration-ms="37880">
+  <suite started-at="2021-10-08T16:01:53 IST" name="Default suite" finished-at="2021-10-08T16:02:29 IST" duration-ms="35437">
     <groups>
     </groups>
-    <test started-at="2021-10-08T15:24:21 IST" name="Default test" finished-at="2021-10-08T15:24:59 IST" duration-ms="37880">
-      <class name="vtiger.CreateContactTc_002">
-        <test-method signature="CreateContactTest()[pri:0, instance:vtiger.CreateContactTc_002@3a44431a]" started-at="2021-10-08T15:24:21 IST" name="CreateContactTest" finished-at="2021-10-08T15:24:59 IST" duration-ms="37776" status="PASS">
+    <test started-at="2021-10-08T16:01:53 IST" name="Default test" finished-at="2021-10-08T16:02:29 IST" duration-ms="35437">
+      <class name="vtiger.CreateContactTc_001">
+        <test-method signature="CreatecontactTest()[pri:0, instance:vtiger.CreateContactTc_001@2ea41516]" started-at="2021-10-08T16:01:53 IST" name="CreatecontactTest" finished-at="2021-10-08T16:02:29 IST" duration-ms="35355" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- CreateContactTest -->
-      </class> <!-- vtiger.CreateContactTc_002 -->
+        </test-method> <!-- CreatecontactTest -->
+      </class> <!-- vtiger.CreateContactTc_001 -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
