@@ -19,7 +19,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 @Test
-public class CreateObjTc_001 {
+public class Tc_001_CreateObj_org_Test {
 	WebDriver driver;
 
 	public void TC001_CreateObjwithDropdown() throws InterruptedException, Throwable {

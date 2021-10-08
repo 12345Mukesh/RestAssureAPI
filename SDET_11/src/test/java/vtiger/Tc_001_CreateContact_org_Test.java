@@ -3,9 +3,8 @@ package vtiger;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.Properties;
-import java.util.Set;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.poi.ss.usermodel.Workbook;
@@ -18,11 +17,12 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class CreateContactTc_002 {
+public class Tc_001_CreateContact_org_Test {
 	WebDriver driver;
 
 	@Test
-	public void CreateContactTest() throws InterruptedException, IOException {
+	public void CreatecontactTest() throws InterruptedException, IOException {
+
 		FileInputStream fis = new FileInputStream("../SDET_11/src/test/resources/data/config1.properties");
 		Properties prop = new Properties();
 		prop.load(fis);
@@ -57,28 +57,14 @@ public class CreateContactTc_002 {
 		Select Firstdd = new Select(First);
 		Firstdd.selectByValue(abc1);
 
-		driver.findElement(By.name("lastname")).sendKeys(prop.getProperty("name"));
-		driver.findElement(By.id("mobile")).sendKeys(prop.getProperty("mobilenum"));
+		Random random = new Random();
+		int randomnumber = random.nextInt(1000);
+		System.out.println(randomnumber);
 
-		WebElement abc = driver.findElement(By.xpath("(//img[@title='Select'])[1]"));
-		abc.click();
-
-		Set<String> windows = driver.getWindowHandles();
-		Iterator<String> window = windows.iterator();
-
-		String parentWindow = window.next();
-		String childWindow = window.next();
-
-		driver.switchTo().window(childWindow);
-
-		driver.findElement(By.id("search_txt")).sendKeys(wb.getSheet("Sheet1").getRow(1).getCell(0).toString());
-
-		driver.findElement(By.name("search")).click();
-
-		driver.findElement(By.xpath("//a[@id='1' and text()='" + wb.getSheet("Sheet1").getRow(1).getCell(0) + "']"))
-		.click();
-
-		driver.switchTo().window(parentWindow);
+		String abc4 = wb.getSheet("Sheet1").getRow(1).getCell(1).toString();
+		String abc5 = wb.getSheet("Sheet1").getRow(1).getCell(2).toString();
+		driver.findElement(By.name("lastname")).sendKeys(abc4);
+		driver.findElement(By.id("mobile")).sendKeys(abc5);
 
 		String abc2 = wb.getSheet("Sheet1").getRow(0).getCell(5).toString();
 		WebElement Leadsource = driver.findElement(By.name("leadsource"));
@@ -90,8 +76,6 @@ public class CreateContactTc_002 {
 		Thread.sleep(4000);
 
 		driver.findElement(By.xpath("//a[text()='Contacts']")).click();
-
-		String abc4 = wb.getSheet("Sheet1").getRow(1).getCell(1).toString();
 		
 		driver.findElement(By.xpath("//input[@class='txtBox']")).sendKeys(abc4);
 		String abc3 = wb.getSheet("Sheet1").getRow(0).getCell(6).toString();
@@ -109,6 +93,7 @@ public class CreateContactTc_002 {
 		}
 
 		driver.close();
+
 	}
 
 }
