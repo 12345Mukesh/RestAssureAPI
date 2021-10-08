@@ -11,7 +11,7 @@ public class XmlFile
 
 	public static void main(String[] args) throws DocumentException  
 	{
-		File inputfile= new File("../SDET_1/Data.xml");
+		File inputfile= new File("../SDET_11/Data.xml");
 		SAXReader reader= new SAXReader();
 		Document doc= reader.read(inputfile);
 	String value= doc.selectSingleNode("//EmployeeDetails/org").getText();
