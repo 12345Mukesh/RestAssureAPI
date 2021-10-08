@@ -17,10 +17,6 @@ public class ExcelData
 		Workbook wb= WorkbookFactory.create(fis);
 			String Excelvalue= wb.getSheet("Account").getRow(0).getCell(1).toString();
 			System.out.println(Excelvalue);	
-			
-		
-		
-	
 	
 	}
 	
