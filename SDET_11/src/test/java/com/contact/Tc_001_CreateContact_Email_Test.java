@@ -1,8 +1,7 @@
-package vtiger;
+package com.contact;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Properties;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -17,12 +16,13 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class Tc_001_CreateContact_org_Test {
+public class Tc_001_CreateContact_Email_Test
+{     
 	WebDriver driver;
-
+	
 	@Test
-	public void CreatecontactTest() throws InterruptedException, IOException {
-
+	public void Tc001_CreateContactwithEmail() throws Throwable
+	{
 		FileInputStream fis = new FileInputStream("../SDET_11/src/test/resources/data/config1.properties");
 		Properties prop = new Properties();
 		prop.load(fis);
@@ -30,7 +30,8 @@ public class Tc_001_CreateContact_org_Test {
 		FileInputStream fs = new FileInputStream("../SDET_11/src/test/resources/data/Input Data.xlsx");
 		Workbook wb = WorkbookFactory.create(fs);
 
-		//open the browser
+		
+		//Enter the browser
 		String browsername = prop.getProperty("browser");
 		if (browsername.equals("chrome")) {
 			driver = new ChromeDriver();
@@ -46,70 +47,101 @@ public class Tc_001_CreateContact_org_Test {
 
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
-		
-       //Giving username and password
+
+		//Enter the username and password
 		driver.findElement(By.name("user_name")).sendKeys(prop.getProperty("username"));
 		driver.findElement(By.name("user_password")).sendKeys(prop.getProperty("password"));
 		driver.findElement(By.id("submitButton")).click();
 
-		//clicking on contacts
 		driver.findElement(By.xpath("//a[text()='Contacts']")).click();
 
-		 //clicking on + button
 		driver.findElement(By.xpath("//img[@title='Create Contact...']")).click();
 
-		//Selecting first name in Dropdown
+		//selecting first name in dropdown
 		String abc1 = wb.getSheet("Sheet1").getRow(0).getCell(4).toString();
 		WebElement First = driver.findElement(By.name("salutationtype"));
 		Select Firstdd = new Select(First);
 		Firstdd.selectByValue(abc1);
-
-		Random random = new Random();
-		int randomnumber = random.nextInt(1000);
-		System.out.println(randomnumber);
-
+		
 		//selecting last name and mobile number
-		String abc4 = wb.getSheet("Sheet1").getRow(1).getCell(1).toString();
+		
+//		Random random = new Random();
+//		int randomnumber = random.nextInt(1000);
+//		System.out.println(randomnumber);
+//		String orgname = abc4 + randomnumber;
+		
+		String abc4 = wb.getSheet("Sheet1").getRow(1).getCell(3).toString();
 		String abc5 = wb.getSheet("Sheet1").getRow(1).getCell(2).toString();
 		driver.findElement(By.name("lastname")).sendKeys(abc4);
 		driver.findElement(By.id("mobile")).sendKeys(abc5);
-
-		//clicking the dropdown of leadsource
-		String abc2 = wb.getSheet("Sheet1").getRow(0).getCell(5).toString();
-		WebElement Leadsource = driver.findElement(By.name("leadsource"));
-		Select Lead = new Select(Leadsource);
-		Lead.selectByValue(abc2);
-
+		
+		//selecting title and department
+		String abc6 = wb.getSheet("Sheet1").getRow(1).getCell(4).toString();
+		driver.findElement(By.id("title")).sendKeys(abc6);
+		String abc7 = wb.getSheet("Sheet1").getRow(1).getCell(5).toString();
+		driver.findElement(By.id("department")).sendKeys(abc7);
+		
+		//selecting Email id and Emailoptout
+		
+		String abc8 = wb.getSheet("Sheet1").getRow(1).getCell(6).toString();
+		driver.findElement(By.id("email")).sendKeys(abc8);
+		
+		driver.findElement(By.name("emailoptout")).click();
+		
+		//clicking on Reference checkbox
+		driver.findElement(By.name("reference")).click();
+		
 		//clicking on save button
-		driver.findElement(By.xpath("(//input[@title='Save [Alt+S]'])[1]")).click();
+				driver.findElement(By.xpath("(//input[@title='Save [Alt+S]'])[1]")).click();
+				
+				//clicking on again contacts
+				driver.findElement(By.xpath("//a[text()='Contacts']")).click();
+				
+				//Entering data into textbox
+				driver.findElement(By.xpath("//input[@class='txtBox']")).sendKeys(abc4);
+			
+				String abc3 = wb.getSheet("Sheet1").getRow(0).getCell(6).toString();
+				
+				//selecting value from dropdown
+				WebElement Indropdown = driver.findElement(By.id("bas_searchfield"));
+				Select Indd = new Select(Indropdown);
+				Indd.selectByVisibleText(abc3);
 
-		Thread.sleep(4000);
+				//click on submit button
+				driver.findElement(By.xpath("//input[@name='submit']")).click();
 
-		//-----------verifying process-------------------
-		//clicking on again contacts
-		driver.findElement(By.xpath("//a[text()='Contacts']")).click();
-		
-		//Entering data into textbox
-		driver.findElement(By.xpath("//input[@class='txtBox']")).sendKeys(abc4);
-		String abc3 = wb.getSheet("Sheet1").getRow(0).getCell(6).toString();
-		
-		//selecting value from dropdown
-		WebElement Indropdown = driver.findElement(By.id("bas_searchfield"));
-		Select Indd = new Select(Indropdown);
-		Indd.selectByVisibleText(abc3);
+			WebElement contactname = driver.findElement(By.xpath("//a[@title='Contacts' and text()='" + abc4+ "']"));
 
-		//click on submit button
-		driver.findElement(By.xpath("//input[@name='submit']")).click();
+			if (contactname.isDisplayed()) 
+			{
+				Assert.assertTrue(true);
+				}
 
-		//
-		WebElement contactname = driver.findElement(By.xpath("//a[@title='Contacts' and text()='" + abc4+ "']"));
-
-		if (contactname.isDisplayed()) {
-			Assert.assertTrue(true);
-		}
-
+				
+				
+				
 		driver.close();
-
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
-
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
