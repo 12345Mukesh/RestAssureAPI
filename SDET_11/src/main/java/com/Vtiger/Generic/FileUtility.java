@@ -31,7 +31,6 @@ public class FileUtility
 	public String readDatafromPropfile(String key) throws Throwable 
 	{
 		FileInputStream fis = new FileInputStream("../SDET_11/src/test/resources/data/config1.properties");
-
 		Properties prop = new Properties();
 		prop.load(fis);
 
