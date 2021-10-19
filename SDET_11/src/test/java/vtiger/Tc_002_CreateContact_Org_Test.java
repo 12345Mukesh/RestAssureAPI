@@ -65,7 +65,6 @@ public class Tc_002_CreateContact_Org_Test
 			System.out.println(actulelement.isDisplayed());
 
 			Assert.assertEquals(actulelement.isDisplayed(), true);
-
 			//Logout from App
 			Actions action = new Actions(driver);
 			action.moveToElement(driver.findElement(By.xpath("//img[@src='themes/softed/images/user.PNG']"))).build().perform();
