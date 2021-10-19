@@ -45,10 +45,6 @@ driver.get("http:www.amazon.in");
 driver.manage().window().maximize();
 driver.findElement(By.xpath("//select[@id='searchDropdownBox']")).click();
 driver.findElement(By.xpath("//option[text()='Apps & Games']")).click();	    
-	    
-	    
-		
-
 	}
 
 }
