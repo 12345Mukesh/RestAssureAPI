@@ -208,14 +208,5 @@ public class WebDriverUtility
 		 JavascriptExecutor jse= (JavascriptExecutor) driver;
 			jse.executeScript("window.scrollBy"+Element);
 	 }
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }
