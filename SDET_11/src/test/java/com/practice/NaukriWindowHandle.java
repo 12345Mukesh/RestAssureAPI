@@ -39,8 +39,7 @@ public class NaukriWindowHandle {
 //	    		}
 //	    	
 //	    	
-//	}
-		
+//	}	
 driver.get("http:www.amazon.in");		
 driver.manage().window().maximize();
 driver.findElement(By.xpath("//select[@id='searchDropdownBox']")).click();
