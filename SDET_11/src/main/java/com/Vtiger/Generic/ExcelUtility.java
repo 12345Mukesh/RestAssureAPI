@@ -17,7 +17,6 @@ public class ExcelUtility
 		Workbook wb=WorkbookFactory.create(fis);
 
 		String data = wb.getSheet(sheetname).getRow(row).getCell(cell).toString();
-
 		return  data;
 	}
 }
