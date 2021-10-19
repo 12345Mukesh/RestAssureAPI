@@ -18,7 +18,7 @@ public class CreateChartCustom extends BaseTest
 		wlib.elementStatus(lp.getuntb(), 1, "Username TextBox");
 		wlib.elementStatus(lp.getpwtd(), 2, "Password textbox");
 		Assert.fail();
-		wlib.elementStatus(lp.getChkbox(), 3, "Checkbox");
+		//wlib.elementStatus(lp.getChkbox(), 3, "Checkbox");
 	}
 
 	
