@@ -16,6 +16,13 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import com.Vtiger.Generic.ExcelUtility;
+import com.Vtiger.Generic.FileUtility;
+import com.Vtiger.ObjectRepo.ContactInfopage;
+import com.Vtiger.ObjectRepo.CreateNewContactPage;
+import com.Vtiger.ObjectRepo.HomePage;
+import com.Vtiger.ObjectRepo.LoginPage;
+
 public class Tc_001_CreateContact_Email_Test
 {     
 	WebDriver driver;
@@ -23,16 +30,10 @@ public class Tc_001_CreateContact_Email_Test
 	@Test
 	public void Tc001_CreateContactwithEmail() throws Throwable
 	{
-		FileInputStream fis = new FileInputStream("../SDET_11/src/test/resources/data/config1.properties");
-		Properties prop = new Properties();
-		prop.load(fis);
-
-		FileInputStream fs = new FileInputStream("../SDET_11/src/test/resources/data/Input Data.xlsx");
-		Workbook wb = WorkbookFactory.create(fs);
-
-		
-		//Enter the browser
-		String browsername = prop.getProperty("browser");
+		FileUtility flib= new FileUtility();
+		ExcelUtility Elib= new ExcelUtility();
+		//open the browser
+		String browsername = flib.readDatafromPropfile("browser");
 		if (browsername.equals("chrome")) {
 			driver = new ChromeDriver();
 			System.out.println("chrome is opened");
@@ -43,84 +44,73 @@ public class Tc_001_CreateContact_Email_Test
 		}
 		
 		//Enter the url
-		driver.get(prop.getProperty("url"));
+		driver.get(flib.readDatafromPropfile("url"));
 
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		driver.manage().window().maximize();
-
-		//Enter the username and password
-		driver.findElement(By.name("user_name")).sendKeys(prop.getProperty("username"));
-		driver.findElement(By.name("user_password")).sendKeys(prop.getProperty("password"));
-		driver.findElement(By.id("submitButton")).click();
-
-		driver.findElement(By.xpath("//a[text()='Contacts']")).click();
-
-		driver.findElement(By.xpath("//img[@title='Create Contact...']")).click();
-
-		//selecting first name in dropdown
-		String abc1 = wb.getSheet("Sheet1").getRow(0).getCell(4).toString();
-		WebElement First = driver.findElement(By.name("salutationtype"));
-		Select Firstdd = new Select(First);
-		Firstdd.selectByValue(abc1);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);           
+		driver.manage().window().maximize();                                       
 		
-		//selecting last name and mobile number
+       //Giving username and password
+		//Step 2 Login to app
+		LoginPage lp= new LoginPage(driver);
+		lp.logintoApp();
 		
-//		Random random = new Random();
-//		int randomnumber = random.nextInt(1000);
-//		System.out.println(randomnumber);
-//		String orgname = abc4 + randomnumber;
+		 HomePage hp =new HomePage(driver);
+	     hp.getContactslink().click();
+			
+	     ContactInfopage cip= new ContactInfopage(driver);
+	     cip.createcont();  
+	     
+	     //selecting the dropdown
+	     String abc1 = Elib.readDatafromExcel(0, 4, "Sheet1");
+			CreateNewContactPage cnp= new CreateNewContactPage(driver);
+			cnp.firstdropdown(abc1);
 		
-		String abc4 = wb.getSheet("Sheet1").getRow(1).getCell(3).toString();
-		String abc5 = wb.getSheet("Sheet1").getRow(1).getCell(2).toString();
-		driver.findElement(By.name("lastname")).sendKeys(abc4);
-		driver.findElement(By.id("mobile")).sendKeys(abc5);
+		
+		String abc4 = Elib.readDatafromExcel(1, 3, "Sheet1");
+		String abc5 = Elib.readDatafromExcel(1, 2, "Sheet1");
+		cnp.lastname().sendKeys(abc4);
+		cnp.mobile().sendKeys(abc5);
 		
 		//selecting title and department
-		String abc6 = wb.getSheet("Sheet1").getRow(1).getCell(4).toString();
-		driver.findElement(By.id("title")).sendKeys(abc6);
-		String abc7 = wb.getSheet("Sheet1").getRow(1).getCell(5).toString();
-		driver.findElement(By.id("department")).sendKeys(abc7);
+		String abc6 = Elib.readDatafromExcel(1, 4, "Sheet1");
+		cnp.title().sendKeys(abc6);
+		String abc7 = Elib.readDatafromExcel(1, 5, "Sheet1");
+		cnp.department().sendKeys(abc7);
 		
 		//selecting Email id and Emailoptout
 		
-		String abc8 = wb.getSheet("Sheet1").getRow(1).getCell(6).toString();
-		driver.findElement(By.id("email")).sendKeys(abc8);
+		String abc8 = Elib.readDatafromExcel(1, 6, "Sheet1");
+		cnp.email().sendKeys(abc8);
 		
-		driver.findElement(By.name("emailoptout")).click();
+		cnp.emailcheckbox().click();
 		
 		//clicking on Reference checkbox
-		driver.findElement(By.name("reference")).click();
+	           cnp.reference().click();
 		
 		//clicking on save button
-				driver.findElement(By.xpath("(//input[@title='Save [Alt+S]'])[1]")).click();
-				
-				//clicking on again contacts
-				driver.findElement(By.xpath("//a[text()='Contacts']")).click();
-				
-				//Entering data into textbox
-				driver.findElement(By.xpath("//input[@class='txtBox']")).sendKeys(abc4);
-			
-				String abc3 = wb.getSheet("Sheet1").getRow(0).getCell(6).toString();
-				
-				//selecting value from dropdown
-				WebElement Indropdown = driver.findElement(By.id("bas_searchfield"));
-				Select Indd = new Select(Indropdown);
-				Indd.selectByVisibleText(abc3);
+	           cnp.getSavecontbtn().click();
+	           
+	   		//Again clicking on Contacts
+	   		 hp.getContactslink().click();		
+	         //sending data in text boz
+	   		 cip.contactname().sendKeys(abc4);
+	   	   //selecting the dropdowntype
+	   		String abc3 = Elib.readDatafromExcel(0, 6, "Sheet1");
+	   	    cip.selectdropdown(abc3);
+          //click on submit button
+	   	    cip.submit();
 
-				//click on submit button
-				driver.findElement(By.xpath("//input[@name='submit']")).click();
+	   		WebElement contactname = driver.findElement(By.xpath("//a[@title='Contacts' and text()='" + abc4+ "']"));
 
-			WebElement contactname = driver.findElement(By.xpath("//a[@title='Contacts' and text()='" + abc4+ "']"));
+	   		if (contactname.isDisplayed()) {
+	   			Assert.assertTrue(true);
+	   		}
 
-			if (contactname.isDisplayed()) 
-			{
-				Assert.assertTrue(true);
-				}
+	   		//logout from app
+	   				hp.logoutfromApp();
 
-				
-				
-				
-		driver.close();
+	       
+	   				driver.close();
 		
 		
 		

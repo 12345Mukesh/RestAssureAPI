@@ -18,20 +18,22 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import com.Vtiger.Generic.ExcelUtility;
+import com.Vtiger.Generic.FileUtility;
+import com.Vtiger.Generic.JavaUtility;
+
 @Test
 public class Tc_001_CreateObj_org_Test {
 	WebDriver driver;
 
-	public void TC001_CreateObjwithDropdown() throws InterruptedException, Throwable {
+	public void TC001_CreateObjwithDropdown() throws InterruptedException, Throwable 
+	{
 
-		FileInputStream fis = new FileInputStream("../SDET_11/src/test/resources/data/config1.properties");
-		Properties prop = new Properties();
-		prop.load(fis);
-
-		FileInputStream fs = new FileInputStream("../SDET_11/src/test/resources/data/Input Data.xlsx");
-		Workbook wb = WorkbookFactory.create(fs);
-
-		String browsername = prop.getProperty("browser");
+		FileUtility flib= new FileUtility();
+		ExcelUtility Elib= new ExcelUtility();
+		JavaUtility jlib= new JavaUtility();
+		//open the browser
+		String browsername = flib.readDatafromPropfile("browser");
 		if (browsername.equals("chrome")) {
 			driver = new ChromeDriver();
 			System.out.println("chrome is opened");
@@ -40,27 +42,28 @@ public class Tc_001_CreateObj_org_Test {
 		} else {
 			System.out.println("please enter proper browser name");
 		}
-		driver.get(prop.getProperty("url"));
+		
+		//Enter the url
+		driver.get(flib.readDatafromPropfile("url"));
 
-		String abc = wb.getSheet("Sheet1").getRow(0).getCell(0).toString();
-		String abc1 = wb.getSheet("Sheet1").getRow(0).getCell(1).toString();
-		String abc2 = wb.getSheet("Sheet1").getRow(0).getCell(2).toString();
-		String abc3 = wb.getSheet("Sheet1").getRow(0).getCell(3).toString();
+		String abc = Elib.readDatafromExcel(0, 0, "Sheet1");
+		String abc1 = Elib.readDatafromExcel(0, 1, "Sheet1");
+		String abc2 = Elib.readDatafromExcel(0, 2, "Sheet1");
+		String abc3 = Elib.readDatafromExcel(0, 3, "Sheet1");
 
+		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
-		driver.findElement(By.name("user_name")).sendKeys(prop.getProperty("username"));
-		driver.findElement(By.name("user_password")).sendKeys(prop.getProperty("password"));
+		driver.findElement(By.name("user_name")).sendKeys(flib.readDatafromPropfile("username"));
+		driver.findElement(By.name("user_password")).sendKeys(flib.readDatafromPropfile("password"));
 		driver.findElement(By.id("submitButton")).click();
 
 		driver.findElement(By.xpath("//a[text()='Organizations']")).click();
 
 		driver.findElement(By.xpath("//img[@title='Create Organization...']")).click();
 
-		Random random = new Random();
-		int randomnumber = random.nextInt(1000);
-		System.out.println(randomnumber);
-		String orgname = abc + randomnumber;
+		
+		String orgname = abc + jlib.generateRandomNo();
 		driver.findElement(By.name("accountname")).sendKeys(orgname);
 
 		WebElement industrydropdown = driver.findElement(By.name("industry"));

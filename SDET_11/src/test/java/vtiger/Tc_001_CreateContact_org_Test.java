@@ -17,21 +17,19 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import com.Vtiger.Generic.ExcelUtility;
+import com.Vtiger.Generic.FileUtility;
+
 public class Tc_001_CreateContact_org_Test {
 	WebDriver driver;
 
 	@Test
-	public void CreatecontactTest() throws InterruptedException, IOException {
+	public void CreatecontactTest() throws Throwable {
 
-		FileInputStream fis = new FileInputStream("../SDET_11/src/test/resources/data/config1.properties");
-		Properties prop = new Properties();
-		prop.load(fis);
-
-		FileInputStream fs = new FileInputStream("../SDET_11/src/test/resources/data/Input Data.xlsx");
-		Workbook wb = WorkbookFactory.create(fs);
-
+		FileUtility flib= new FileUtility();
+		ExcelUtility Elib= new ExcelUtility();
 		//open the browser
-		String browsername = prop.getProperty("browser");
+		String browsername = flib.readDatafromPropfile("browser");
 		if (browsername.equals("chrome")) {
 			driver = new ChromeDriver();
 			System.out.println("chrome is opened");
@@ -42,14 +40,14 @@ public class Tc_001_CreateContact_org_Test {
 		}
 		
 		//Enter the url
-		driver.get(prop.getProperty("url"));
+		driver.get(flib.readDatafromPropfile("url"));
 
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);           
+		driver.manage().window().maximize();                                       
 		
        //Giving username and password
-		driver.findElement(By.name("user_name")).sendKeys(prop.getProperty("username"));
-		driver.findElement(By.name("user_password")).sendKeys(prop.getProperty("password"));
+		driver.findElement(By.name("user_name")).sendKeys(flib.readDatafromPropfile("username"));
+		driver.findElement(By.name("user_password")).sendKeys(flib.readDatafromPropfile("password"));
 		driver.findElement(By.id("submitButton")).click();
 
 		//clicking on contacts
@@ -59,7 +57,7 @@ public class Tc_001_CreateContact_org_Test {
 		driver.findElement(By.xpath("//img[@title='Create Contact...']")).click();
 
 		//Selecting first name in Dropdown
-		String abc1 = wb.getSheet("Sheet1").getRow(0).getCell(4).toString();
+		String abc1 = Elib.readDatafromExcel(0, 4, "Sheet1");
 		WebElement First = driver.findElement(By.name("salutationtype"));
 		Select Firstdd = new Select(First);
 		Firstdd.selectByValue(abc1);
@@ -69,13 +67,13 @@ public class Tc_001_CreateContact_org_Test {
 		System.out.println(randomnumber);
 
 		//selecting last name and mobile number
-		String abc4 = wb.getSheet("Sheet1").getRow(1).getCell(1).toString();
-		String abc5 = wb.getSheet("Sheet1").getRow(1).getCell(2).toString();
+		String abc4 = Elib.readDatafromExcel(1, 1, "Sheet1");
+		String abc5 = Elib.readDatafromExcel(1, 2, "Sheet1");
 		driver.findElement(By.name("lastname")).sendKeys(abc4);
 		driver.findElement(By.id("mobile")).sendKeys(abc5);
 
 		//clicking the dropdown of leadsource
-		String abc2 = wb.getSheet("Sheet1").getRow(0).getCell(5).toString();
+		String abc2 = Elib.readDatafromExcel(0, 5, "Sheet1");
 		WebElement Leadsource = driver.findElement(By.name("leadsource"));
 		Select Lead = new Select(Leadsource);
 		Lead.selectByValue(abc2);
@@ -91,7 +89,7 @@ public class Tc_001_CreateContact_org_Test {
 		
 		//Entering data into textbox
 		driver.findElement(By.xpath("//input[@class='txtBox']")).sendKeys(abc4);
-		String abc3 = wb.getSheet("Sheet1").getRow(0).getCell(6).toString();
+		String abc3 = Elib.readDatafromExcel(0, 6, "Sheet1");
 		
 		//selecting value from dropdown
 		WebElement Indropdown = driver.findElement(By.id("bas_searchfield"));

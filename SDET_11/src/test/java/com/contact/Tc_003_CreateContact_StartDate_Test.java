@@ -17,6 +17,14 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import com.Vtiger.Generic.ExcelUtility;
+import com.Vtiger.Generic.FileUtility;
+import com.Vtiger.Generic.WebDriverUtility;
+import com.Vtiger.ObjectRepo.ContactInfopage;
+import com.Vtiger.ObjectRepo.CreateNewContactPage;
+import com.Vtiger.ObjectRepo.HomePage;
+import com.Vtiger.ObjectRepo.LoginPage;
+
 public class Tc_003_CreateContact_StartDate_Test
 {
     WebDriver driver;
@@ -24,15 +32,10 @@ public class Tc_003_CreateContact_StartDate_Test
 	public void Tc003_CreateContactwithStartDate() throws Throwable
 	{
 		
-    	FileInputStream fis = new FileInputStream("../SDET_11/src/test/resources/data/config1.properties");
-		Properties prop = new Properties();
-		prop.load(fis);
-
-		FileInputStream fs = new FileInputStream("../SDET_11/src/test/resources/data/Input Data.xlsx");
-		Workbook wb = WorkbookFactory.create(fs);
-
-		//opening the browser
-		String browsername = prop.getProperty("browser");
+    	FileUtility flib= new FileUtility();
+		ExcelUtility Elib= new ExcelUtility();
+		//open the browser
+		String browsername = flib.readDatafromPropfile("browser");
 		if (browsername.equals("chrome")) {
 			driver = new ChromeDriver();
 			System.out.println("chrome is opened");
@@ -42,91 +45,80 @@ public class Tc_003_CreateContact_StartDate_Test
 			System.out.println("please enter proper browser name");
 		}
 		
-		//Entering the url
-		driver.get(prop.getProperty("url"));
+		//Enter the url
+		driver.get(flib.readDatafromPropfile("url"));
 
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		driver.manage().window().maximize();
-
-		//Entering the username and password
-		driver.findElement(By.name("user_name")).sendKeys(prop.getProperty("username"));
-		driver.findElement(By.name("user_password")).sendKeys(prop.getProperty("password"));
-		driver.findElement(By.id("submitButton")).click();
-
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);           
+		driver.manage().window().maximize();                                       
 		
-		//clicking on contact tab
-		driver.findElement(By.xpath("//a[text()='Contacts']")).click();
-
-		//click on + button
-		driver.findElement(By.xpath("//img[@title='Create Contact...']")).click();
+      //Giving username and password
+		//Step 2 Login to app
+		LoginPage lp= new LoginPage(driver);
+		lp.logintoApp();
+		
+		 HomePage hp =new HomePage(driver);
+	     hp.getContactslink().click();
+			
+	     ContactInfopage cip= new ContactInfopage(driver);
+	     cip.createcont();  
 		
 		
 		//selecting first name in dropdown
-				String abc1 = wb.getSheet("Sheet1").getRow(0).getCell(4).toString();
-				WebElement First = driver.findElement(By.name("salutationtype"));
-				Select Firstdd = new Select(First);
-				Firstdd.selectByValue(abc1);
+				String abc1 = Elib.readDatafromExcel(0, 4, "Sheet1");
+				CreateNewContactPage cnp= new CreateNewContactPage(driver);
+				cnp.firstdropdown(abc1);
 				
 		//Entering the lastname
-				String b1 = wb.getSheet("Sheet1").getRow(3).getCell(0).toString();
-				driver.findElement(By.name("lastname")).sendKeys(b1);
+				String b1 = Elib.readDatafromExcel(3, 0, "Sheet1");
+				cnp.lastname().sendKeys(b1);
 				
 				//clicking the dropdown of leadsource
-				String b2 = wb.getSheet("Sheet1").getRow(3).getCell(1).toString();
-				WebElement Leadsource = driver.findElement(By.name("leadsource"));
-				Select Lead = new Select(Leadsource);
-				Lead.selectByValue(b2);
+				String b2 = Elib.readDatafromExcel(3, 1, "Sheet1");
+				cnp.seconddropdown(b2);
 				
 				//Entering data in Home mobile
-				String b3 = wb.getSheet("Sheet1").getRow(3).getCell(2).toString();
-				driver.findElement(By.id("otherphone")).sendKeys(b3);
+				String b3 = Elib.readDatafromExcel(3, 2, "Sheet1");
+				cnp.otherphone().sendKeys(b3);
 				
 				//click on Do not call checkbox
-				driver.findElement(By.name("donotcall")).click();
+				cnp.donotcall().click();
 	 
 				 //scrolldown
 				
-				WebElement element= driver.findElement(By.name("portal"));
+				WebElement element= cnp.portal();
 				Point loc= element.getLocation();
-				JavascriptExecutor jse= (JavascriptExecutor) driver;
-				jse.executeScript("window.scrollBy"+loc);
+				WebDriverUtility wutil= new WebDriverUtility();
+				wutil.scrolldown(driver, loc);
 	
 	
-				//Selecting Date
+				//Selecting Date                             //b1
 				//driver.findElement(By.xpath("//img[@src='themes/softed/images/btnL3Calendar.gif']")).click();
 				//Date not inspecting
 				
 				//clicking on save button
-				driver.findElement(By.xpath("(//input[@title='Save [Alt+S]'])[2]")).click();
-	
-				
-				//clicking on again contacts
-				driver.findElement(By.xpath("//a[text()='Contacts']")).click();
-				
-				//Entering data into textbox
-				driver.findElement(By.xpath("//input[@class='txtBox']")).sendKeys(b1);
-			
-				String abc3 = wb.getSheet("Sheet1").getRow(0).getCell(6).toString();
-				
-				//selecting value from dropdown
-				WebElement Indropdown = driver.findElement(By.id("bas_searchfield"));
-				Select Indd = new Select(Indropdown);
-				Indd.selectByVisibleText(abc3);
+		           cnp.getSavecontbtn().click();
+		           
+		   		//Again clicking on Contacts
+		   		 hp.getContactslink().click();		
+		         //sending data in text boz
+		   		 cip.contactname().sendKeys(b1);
+		   	   //selecting the dropdowntype
+		   		String abc3 = Elib.readDatafromExcel(0, 6, "Sheet1");
+		   	    cip.selectdropdown(abc3);
+	          //click on submit button
+		   	    cip.submit();
 
-				//click on submit button
-				driver.findElement(By.xpath("//input[@name='submit']")).click();
+		   		WebElement contactname = driver.findElement(By.xpath("//a[@title='Contacts' and text()='" + b1+ "']"));
 
-			WebElement contactname = driver.findElement(By.xpath("//a[@title='Contacts' and text()='" + b1+ "']"));
+		   		if (contactname.isDisplayed()) {
+		   			Assert.assertTrue(true);
+		   		}
 
-			if (contactname.isDisplayed()) 
-			{
-				Assert.assertTrue(true);
-				}
+		   		//logout from app
+		   				hp.logoutfromApp();
 
-				
-				
-				
-		driver.close();
+		       
+		   				driver.close();
 		
 	
 				
