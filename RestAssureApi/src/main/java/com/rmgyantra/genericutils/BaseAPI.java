@@ -29,8 +29,6 @@ public class BaseAPI
 	{
 		db.closingdatabaseconnection();
 		System.out.println("====database is closed=====");
-		
-		
 	}
 	
 	
