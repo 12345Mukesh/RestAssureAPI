@@ -31,7 +31,7 @@ public void createprojectwithcompletedstatus() throws Throwable
 	String expstatus="on-going";
 	
   //1.creating a resource inside server using pojo class	
-  ProjectLib projectlib = new ProjectLib("Rahul", expprojname, expstatus, 15);
+  ProjectLib projectlib = new ProjectLib("Raja Ravinder", expprojname, expstatus, 15);
 	
  //2.Give precondition and capture the response after doing post operation 
 	Response response = given()
