@@ -14,7 +14,7 @@ public void chaining()
   //Getting data from server	
 	Response response = when()
   .get("http://localhost:8084/projects"); 
-   String firstproid=response.jsonPath().get("[46].projectId");	
+   String firstproid=response.jsonPath().get("[14].projectId");	
 	System.out.println(firstproid);
 	//taking that project id and storing in path variable
 	

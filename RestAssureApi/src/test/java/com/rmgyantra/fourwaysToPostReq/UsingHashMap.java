@@ -16,7 +16,7 @@ public class UsingHashMap
 	{
 		HashMap jobj = new HashMap();
 		jobj.put("createdBy", "Automation Batch");
-		jobj.put("projectName","SELENIUM");
+		jobj.put("projectName","SELENIUM + JAVA");
 		jobj.put("status", "on-going");
 		jobj.put("teamSize", 50);
 		   

@@ -17,7 +17,7 @@ public class UPDATEProjectTest
 	   JSONObject jobj = new JSONObject();
 	   
 		jobj.put("createdBy", "Mukesh");
-		jobj.put("projectName","RestAssure");
+		jobj.put("projectName","Mobile Testing");
 		jobj.put("status", "started");
 		jobj.put("teamSize", 05);
 		   
@@ -25,7 +25,7 @@ public class UPDATEProjectTest
 		 .contentType(ContentType.JSON)
 		   .body(jobj)
 		   .when()
-		   .put("http://localhost:8084/projects/TY_PROJ_036")
+		   .put("http://localhost:8084/projects/TY_PROJ_1007")
 		   .then()
 		   .log().all()
 		   .assertThat().statusCode(200)

@@ -11,7 +11,7 @@ public class DeleteProjectTest
 	@Test
 	   public void deleteproject()
 	   {
-		 Response response= RestAssured.delete("http://localhost:8084/projects/TY_PROJ_1202");
+		 Response response= RestAssured.delete("http://localhost:8084/projects/TY_PROJ_474");
 		   
 		 ValidatableResponse vresp = response.then();
 		 vresp.assertThat().contentType("application/json");

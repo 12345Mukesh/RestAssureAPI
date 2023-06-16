@@ -12,7 +12,7 @@ public class QueryParameterTest {
    {
 	   given()
 	   .contentType(ContentType.JSON)
-	   .queryParams("page", "2")
+	   .queryParams("page", "3")
 	   .when()
 	   .get("http://reqres.in/api/users")
 	   .then()

@@ -16,20 +16,24 @@ public class GETProjectTest
 		 Response response = RestAssured.get("http://localhost:8084/projects");
 //		System.out.println(response.asString());   
 //		 response.prettyPrint();
-		//Response 
-		 System.out.println(response.getContentType());
-		 System.out.println(response.getStatusCode());
-	     System.out.println(response.getTime());
-	  
-	  
-	  //validation
-	  int actualstatuscode=response.getStatusCode();
-	  Assert.assertEquals(actualstatuscode, 200);
-	  
+	
+		  //validation
+		  int actualstatuscode=response.getStatusCode();
+		  Assert.assertEquals(actualstatuscode, 200);
+		 
 	  ValidatableResponse vr = response.then();
 	  vr.assertThat().statusCode(actualstatuscode);
 	  vr.assertThat().contentType("application/json");
 	  vr.log().all();
+	  
+		//Response 
+		 System.out.println(response.getContentType());
+		 System.out.println(response.getStatusCode());
+	     System.out.println(response.getTime());
+	  System.out.println(actualstatuscode);
+	  
+	
+	  
 	  
 	  }
 	

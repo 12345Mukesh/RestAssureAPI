@@ -23,6 +23,14 @@ public void oauth2()
   //Generating token
   .when()   //Base URI
   .post("http://coop.apps.symfonycasts.com/token");
+    
+    /*
+     *  Modifier and Type   	 Method and Description
+     *  
+          T	prettyPeek()   -     Peeks into the response body by printing it to the console in a prettified manner.
+          String           -     prettyPrint() Pretty-print the response body if possible and return it as string.
+          String           -     print() Print the response body and return it as string.
+     */
   
     System.out.println(response.prettyPrint());
   

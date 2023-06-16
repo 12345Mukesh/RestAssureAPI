@@ -13,7 +13,7 @@ public class DeleteProjectTest
    public void  deleteprojects()
    {
 	   
-	   when().delete("http://localhost:8084/projects/TY_PROJ_603")
+	   when().delete("http://localhost:8084/projects/TY_PROJ_1202")
 		.then().assertThat().statusCode(204)
 	   .and()
 	   .assertThat().contentType("application/json")

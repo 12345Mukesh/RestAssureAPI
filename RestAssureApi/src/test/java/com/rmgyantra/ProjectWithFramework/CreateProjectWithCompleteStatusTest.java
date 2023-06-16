@@ -31,7 +31,7 @@ public void createprojectwithcompletedstatus() throws Throwable
 	String expstatus="on-going";
 	
   //1.creating a resource inside server using pojo class	
-  ProjectLib projectlib = new ProjectLib("Raja Ravinder", expprojname, expstatus, 15);
+  ProjectLib projectlib = new ProjectLib("Subash Chandra Bose", expprojname, expstatus, 15);
 	
  //2.Give precondition and capture the response after doing post operation 
 	Response response = given()
@@ -60,6 +60,7 @@ public void createprojectwithcompletedstatus() throws Throwable
 	String actualstatus=dbutility.executeQueryAndGetData(query, 5, expstatus);
   
 	//6.checking expected data with database
+	System.out.println(actualdata);
 	Assert.assertEquals(actualdata, expprojname);
 	Assert.assertEquals(actualstatus, expstatus);
 	

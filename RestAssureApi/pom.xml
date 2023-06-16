@@ -27,7 +27,7 @@
 				<configuration>
 					<suiteXmlFiles>
 						<!-- TestNG suite XML files -->
-						<suiteXmlFile>UsingGenericLib.xml</suiteXmlFile>
+						<suiteXmlFile></suiteXmlFile>
 					</suiteXmlFiles>
 				</configuration>
 			</plugin>

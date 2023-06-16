@@ -3,13 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.rmgyantra.ProjectWithFramework.CreateProjectWithCompleteStatusTest">
+      <class name="com.parameters.HamcrestVerificationTest">
         <methods>
-          <include name="configBeforeSuite"/>
-          <include name="createprojectwithcompletedstatus"/>
-          <include name="configAfterSuite"/>
+          <include name="ham"/>
         </methods>
-      </class> <!-- com.rmgyantra.ProjectWithFramework.CreateProjectWithCompleteStatusTest -->
+      </class> <!-- com.parameters.HamcrestVerificationTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

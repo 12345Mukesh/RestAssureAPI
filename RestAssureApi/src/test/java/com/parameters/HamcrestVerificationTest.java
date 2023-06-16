@@ -19,7 +19,7 @@ public class HamcrestVerificationTest
 	   .get("http://localhost:8084/projects")
 	   .then()
 	   .assertThat().time(Matchers.lessThan(50L),TimeUnit.SECONDS)
-       .assertThat().body("[43].projectName", Matchers.equalTo("RamaRaju"))
+       .assertThat().body("[0].projectName", Matchers.equalTo("SDET_001"))
         .log().all();
    
    

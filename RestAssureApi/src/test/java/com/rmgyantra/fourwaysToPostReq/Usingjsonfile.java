@@ -13,7 +13,7 @@ public class Usingjsonfile
    @Test
    public void usingjsonfile()
    {
-	   
+	   //Binary data file will be taking from the project structure not from external system
 	  File file= new File("./BinaryData.json");
 	   
 	   given()

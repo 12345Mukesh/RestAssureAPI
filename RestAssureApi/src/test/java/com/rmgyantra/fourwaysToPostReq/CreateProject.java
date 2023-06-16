@@ -20,7 +20,7 @@ public class CreateProject
 	JSONObject jobj = new JSONObject();
 	   
 	jobj.put("createdBy", "Manual Batch" );
-	jobj.put("projectName","JIRA"+rn);
+	jobj.put("projectName","Azure Devops"+rn);
 	jobj.put("status", "started");
 	jobj.put("teamSize", 50);
 	   

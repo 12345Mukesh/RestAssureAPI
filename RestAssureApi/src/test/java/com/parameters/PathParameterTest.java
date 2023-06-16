@@ -14,7 +14,7 @@ public class PathParameterTest
 	{
 	   given()
 	   .contentType(ContentType.JSON)
-	   .pathParam("projectId", "TY_PROJ_029")
+	   .pathParam("projectId", "TY_PROJ_1208")
 		.when()
 		.get("http://localhost:8084/projects/{projectId}")
 		.then()

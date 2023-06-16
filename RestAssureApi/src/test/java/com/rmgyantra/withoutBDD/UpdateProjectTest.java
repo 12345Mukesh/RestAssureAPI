@@ -18,15 +18,17 @@ public class UpdateProjectTest
 	
 		JSONObject jobj=new JSONObject();
 		//creating body
-		jobj.put("projectName ","Deeraj");
-		
+		jobj.put("createdBy","Dheeraj");
+		jobj.put("projectName","TYSS1289");
+		jobj.put("teamSize", "250");
+		jobj.put("status", "Active");
 
 		 RequestSpecification reqspec=RestAssured.given();
 		  
 		 reqspec.contentType(ContentType.JSON);
 		 reqspec.body(jobj);
 		 
-		 Response response = reqspec.put("http://localhost:8084/projects/TY_PROJ_1209");
+		 Response response = reqspec.put("http://localhost:8084/projects/TY_PROJ_1006");
 		 
 		 ValidatableResponse vresp = response.then();
 		 vresp.assertThat().statusCode(200);

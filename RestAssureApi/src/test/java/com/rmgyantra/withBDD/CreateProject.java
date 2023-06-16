@@ -12,11 +12,10 @@ import java.util.Random;
 public class CreateProject
 {
    @Test
-   
    public void createproject()
    {
 	Random random=  new Random(); 
-	   int rn=random.nextInt(2000);
+	  int rn=random.nextInt(2000);
 	JSONObject jobj = new JSONObject();
 	   
 	jobj.put("createdBy", "Manual Batch" );
@@ -32,7 +31,7 @@ public class CreateProject
 	   .then()
 	   .log().all()
 	   .assertThat().statusCode(201)
-	   .contentType("application/json");
+	   .assertThat().contentType("application/json");
 	   
 	   
 	   

@@ -16,7 +16,7 @@ public class validateDynamicResponse {
 	public void dynamicResponse()
 	{
 	
-		String expecteddata="Mukesh";
+		String expecteddata="Ramaraju";
 		String actualdata=null;
      Response response = when()
 		
@@ -32,7 +32,7 @@ public class validateDynamicResponse {
     	if(data.equals(expecteddata)) 
     	{
     		 actualdata=data;
-    		System.out.println("value is present" +actualdata);
+    		System.out.println("value is present " +actualdata);
     	    break;
     	}
     	 

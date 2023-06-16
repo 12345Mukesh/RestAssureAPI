@@ -12,7 +12,7 @@ public class BearerTokenTest
 	{
 		//Giving personal access token of github
 		given()
-		.auth().oauth2("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")
+		.auth().oauth2("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")
 		//Giving the github api
 		.when()
 		.get("http://api.github.com/user/repos")

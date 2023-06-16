@@ -16,7 +16,7 @@ public class UsingPojoClassTest
    {
 	   Random random= new Random();
 	   int rn=random.nextInt(1000);
-	  ProjectLib plib = new ProjectLib("testyantra","usingpojoclass"+rn,"started",250);
+	  ProjectLib plib = new ProjectLib("testyantra","Data Created method from pojo class","started",75);
 	   
 	  given()
 		 .contentType(ContentType.JSON)
